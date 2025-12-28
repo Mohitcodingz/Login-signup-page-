@@ -1,0 +1,58 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* container styling */
+.container {
+    width: 700px;
+    height: 300px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(to top, yellow, red);
+    text-align: center;
+    padding-top: 80px;
+    border-radius: 15px;
+}
+
+.container:hover {
+    background: linear-gradient(to right, red, yellow);
+}
+
+/* buttons */
+.anchor-container {
+    margin-top: 40px;
+     
+}
+/* When you are dealing with inline item and you want to center it's insides don't use inline-block or flex instead use the inline-flex */
+a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 50px;
+    border: 1px solid blue;
+    background: linear-gradient(to right, blue, green);
+    border-radius: 36px;
+    font-size: 14px;
+    color: white;
+    margin: 10px;
+    text-decoration: none;
+    cursor: pointer;
+
+}
+
+a:hover {
+    background: linear-gradient(to right, rgb(36, 187, 229), blue);
+}
+
+/* responsive */
+@media screen and (max-width: 710px) {
+    .container {
+        width: 90%;
+        height: auto;
+    }
+}

@@ -1,28 +1,40 @@
 signup = () => {
     let password = document.getElementById("password").value;
     let password2 = document.getElementById("password2").value;
+    let emailinput = document.getElementById("email").value;
     let username = document.getElementById("username").value;
-    if (password !== password2) {
+    if (!/@gmail\.com$/.test(emailinput)) {
+        alert("Please use @gmail.com at the end");
+        return
+    }
+    else if (password === "" || password2 === "" || emailinput === "" || username === "") {
+        alert("Please fill all fields");
+        return
+    }
+    else if (password !== password2) {
         alert("Re-Enter Your password correctly"); return
     }
     else {
-        localStorage.setItem("username1", username);
+        localStorage.setItem("Username", username);
+        localStorage.setItem("Mail", emailinput);
         sessionStorage.setItem("password1", password);
-        alert(" Sign up successfull")
+        alert(" Sign up successfull");
+        window.location.href = "login.html"
+        return
     }
 }
 login = () => {
-    let username = document.getElementById("Login-username").value;
+    let email = document.getElementById("Login-email").value;
     let password = document.getElementById("Login-password").value;
- let storedusername = localStorage.getItem("username1");
- let storedpassword = sessionStorage.getItem("password1");
+    let storedemail = localStorage.getItem("Mail");
+    let storedpassword = sessionStorage.getItem("password1");
+    let storedusername = localStorage.getItem("Username");
 
-    if (username === storedusername && password === storedpassword) {
+    if (email === storedemail && password === storedpassword) {
         alert("Welcome Back " + storedusername);
-        return  
+        
     }
-    else{
+    else {
         alert("Invalid credintials")
     }
 }
-

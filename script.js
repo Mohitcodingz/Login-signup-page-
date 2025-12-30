@@ -3,16 +3,17 @@ signup = () => {
     let password2 = document.getElementById("password2").value;
     let emailinput = document.getElementById("email").value;
     let username = document.getElementById("username").value;
-    if (!/@gmail\.com$/.test(emailinput)) {
-        alert("Please use @gmail.com at the end");
-        return
-    }
-    else if (password === "" || password2 === "" || emailinput === "" || username === "") {
+
+    if (password === "" || password2 === "" || emailinput === "" || username === "") {
         alert("Please fill all fields");
         return
     }
     else if (password !== password2) {
         alert("Re-Enter Your password correctly"); return
+    }
+    else if (!/@gmail\.com$/.test(emailinput)) {
+        alert("Please use @gmail.com at the end");
+        return
     }
     else {
         localStorage.setItem("Username", username);
@@ -23,6 +24,7 @@ signup = () => {
         return
     }
 }
+
 login = () => {
     let email = document.getElementById("Login-email").value;
     let password = document.getElementById("Login-password").value;
@@ -32,9 +34,21 @@ login = () => {
 
     if (email === storedemail && password === storedpassword) {
         alert("Welcome Back " + storedusername);
-        
     }
     else {
         alert("Invalid credintials")
     }
 }
+
+document.querySelectorAll("a, button").forEach(btn => {
+    btn.addEventListener("mousemove", e => {
+        const rect = btn.getBoundingClientRect();
+        btn.style.setProperty("--x", `${e.clientX - rect.left}px`);
+        btn.style.setProperty("--y", `${e.clientY - rect.top}px`);
+    });
+});
+
+/*
+document.querySelectorAll is used for selecting all the anchor tag and then 
+We run for each using btn variable 
+*/

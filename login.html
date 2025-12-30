@@ -5,17 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LOGIN PAGE</title>
-<script src="script.js" defer> </script>
+    <script src="script.js" defer> </script>
 </head>
 
 <body>
     <div class="container">
         <h1>LOGIN</h1>
-        <input type="text" placeholder="Enter your name" id="Login-username">
+        <input type="email" placeholder="Enter your email" id="Login-email">
         <br>
         <input type="password" placeholder="Enter your password" id="Login-password">
         <br>
-        <button onclick="login()"> Submit</button>
+        <button onclick="login()"> SUBMIT</button>
         <a href="index.html">HOME</a>
     </div>
     <style>
@@ -25,9 +25,27 @@
             box-sizing: border-box;
         }
 
-        h1{
-            margin:  0 0 20px 0;
+        input {
+            width: 300px;
+            height: 20px;
+            margin-bottom: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            border: none;
+            border-radius: 5px;
         }
+
+        input:hover {
+            border: 1px solid lightseagreen;
+            box-shadow: 0 0 15px rgb(49, 241, 255);
+        }
+
+        h1 {
+            margin: 0 0 20px 0;
+        }
+
         .container {
             width: 700px;
             height: 300px;
@@ -42,30 +60,70 @@
             align-items: center;
             justify-content: center;
             flex-direction: column;
+            transition: box-shadow 0.5s ease-in-out,
+                background-position 1.2s ease,
+                transform 0.5s ease;
         }
 
         .container:hover {
             background: linear-gradient(to right, red, yellow);
+            transform: translate(-50%, -50%) scale(1.03);
+            /* this makes the box go up in scaling without leaving the position*/
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.295);
         }
 
-        a,button {
+        a,
+        button {
             display: inline-flex;
             align-items: center;
             justify-content: center;
+
             width: 100px;
-            height: 20px;
+            height: 25px;
+
             border: 1px solid blue;
-            background: linear-gradient(to right, blue, green);
             border-radius: 36px;
-            font-size: 14px;
+            background: linear-gradient(to right, blue, green);
             color: white;
+            cursor: pointer;
             margin: 10px;
             text-decoration: none;
-            cursor: pointer;
 
+            /* ✅ REQUIRED */
+            position: relative;
+            overflow: hidden;
         }
 
-        a:hover , button:hover {
+        a::after,
+        button::after {
+            content: "";
+            position: absolute;
+
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: white;
+
+            left: var(--x);
+            top: var(--y);
+
+            transform: translate(-50%, -50%) scale(0);
+            opacity: 0;
+
+            filter: blur(0.5px);
+            transition:
+                transform 0.4s ease,
+                opacity 0.25s ease;
+        }
+
+        a:hover::after,
+        button:hover::after {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1.6);
+        }
+
+        a:hover,
+        button:hover {
             background: linear-gradient(to right, rgb(36, 187, 229), blue);
         }
 

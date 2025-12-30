@@ -15,18 +15,26 @@
     background: linear-gradient(to top, yellow, red);
     text-align: center;
     padding-top: 80px;
-    border-radius: 15px;
+    border-radius: 18px;
+    box-shadow: 0 0 50px rgba(87, 87, 87, 0.342);
+    transition: box-shadow 0.5s ease,
+        background-position 1.2s ease,
+        transform 0.5s ease;
 }
 
 .container:hover {
     background: linear-gradient(to right, red, yellow);
+
+    transform: translate(-50%, -50%) scale(1.03);
+    /* this makes the box go up in scaling without leaving the position*/
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.493);
 }
 
 /* buttons */
 .anchor-container {
     margin-top: 40px;
-     
 }
+
 /* When you are dealing with inline item and you want to center it's insides don't use inline-block or flex instead use the inline-flex */
 a {
     display: inline-flex;
@@ -42,7 +50,36 @@ a {
     margin: 10px;
     text-decoration: none;
     cursor: pointer;
+    /* making the dot remaining inside of it */
+    position: relative;
+    /* keep the dot from leaking outside */
+    overflow: hidden;
+}
 
+a::after {
+    content: "";
+    /* creates the dot */
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: white;
+    /* till here creates the dot structure */
+    opacity: 0;
+    filter: blur(0.5px);
+    /* makes the dot become visible with smooth transition */
+    transition: transform 0.6s ease,
+        opacity 0.25s ease;
+    /* to add js we create variables */
+    left: var(--x);
+    top: var(--y);
+    /*  left and top var x and y help to  place the dot exactly where the mouse is*/
+    transform: translate(-50%, -50%) scale(0);
+}
+
+a:hover::after {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.8);
 }
 
 a:hover {
